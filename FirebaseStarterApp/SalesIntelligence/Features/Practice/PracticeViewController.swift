@@ -123,6 +123,11 @@ final class PracticeViewController: UIViewController {
             state = .error
             return
         }
+        guard let userId = appState.userId else {
+            statusMessage = "Enter your user ID to begin practicing."
+            state = .error
+            return
+        }
 
         sessionTask?.cancel()
         sessionTask = Task { [weak self] in
@@ -133,7 +138,7 @@ final class PracticeViewController: UIViewController {
             }
             do {
                 try await self.recordManager.start(on: self.previewView)
-                try await ElevenLabsService.shared.startSession(agentID: Constants.agentID, userId: self.appState.userId)
+                try await ElevenLabsService.shared.startSession(agentID: Constants.agentID, userId: userId)
                 await MainActor.run {
                     self.recordingStartDate = Date()
                     self.startTimer()
@@ -153,6 +158,11 @@ final class PracticeViewController: UIViewController {
 
     @objc private func handleStopTapped() {
         guard state == .recording else { return }
+        guard let userId = appState.userId else {
+            statusMessage = "User ID missing. Restart the session after entering it."
+            state = .error
+            return
+        }
 
         sessionTask?.cancel()
         sessionTask = Task { [weak self] in
@@ -169,7 +179,7 @@ final class PracticeViewController: UIViewController {
                 }
 
                 let preview = try await NetworkClient.shared.uploadVideo(fileURL: fileURL,
-                                                                         userId: self.appState.userId,
+                                                                         userId: userId,
                                                                          duration: duration)
                 try? FileManager.default.removeItem(at: fileURL)
 

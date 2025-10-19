@@ -15,12 +15,11 @@ final class SessionDetailViewController: UIViewController {
 
     private let scrollView = UIScrollView()
     private let contentStack = UIStackView()
-    private let titleLabel = UILabel()
-    private let summaryLabel = UILabel()
-    private let strengthsLabel = UILabel()
-    private let improvementsLabel = UILabel()
-    private let strengthsHeaderLabel = UILabel()
-    private let improvementsHeaderLabel = UILabel()
+    private let sessionIdLabel = UILabel()
+    private let transcriptHeaderLabel = UILabel()
+    private let transcriptLabel = UILabel()
+    private let feedbackHeaderLabel = UILabel()
+    private let feedbackLabel = UILabel()
     private let activityIndicator = UIActivityIndicatorView(style: .large)
     private let errorLabel = UILabel()
     private let retryButton = UIButton(type: .system)
@@ -59,15 +58,14 @@ final class SessionDetailViewController: UIViewController {
         contentStack.translatesAutoresizingMaskIntoConstraints = false
         scrollView.addSubview(contentStack)
 
-        [titleLabel, summaryLabel, strengthsLabel, improvementsLabel].forEach { label in
+        [sessionIdLabel, transcriptLabel, feedbackLabel].forEach { label in
             label.numberOfLines = 0
             label.textColor = .label
         }
 
-        titleLabel.font = UIFont.preferredFont(forTextStyle: .title1)
-        summaryLabel.font = UIFont.preferredFont(forTextStyle: .body)
-        strengthsLabel.font = UIFont.preferredFont(forTextStyle: .body)
-        improvementsLabel.font = UIFont.preferredFont(forTextStyle: .body)
+        sessionIdLabel.font = UIFont.preferredFont(forTextStyle: .headline)
+        transcriptLabel.font = UIFont.preferredFont(forTextStyle: .body)
+        feedbackLabel.font = UIFont.preferredFont(forTextStyle: .body)
 
         errorLabel.font = UIFont.preferredFont(forTextStyle: .body)
         errorLabel.textColor = .systemRed
@@ -79,15 +77,14 @@ final class SessionDetailViewController: UIViewController {
 
         activityIndicator.hidesWhenStopped = true
 
-        configureSectionLabel(strengthsHeaderLabel, text: "Strengths")
-        configureSectionLabel(improvementsHeaderLabel, text: "Improvements")
+        configureSectionLabel(transcriptHeaderLabel, text: "Transcript")
+        configureSectionLabel(feedbackHeaderLabel, text: "Feedback")
 
-        contentStack.addArrangedSubview(titleLabel)
-        contentStack.addArrangedSubview(summaryLabel)
-        contentStack.addArrangedSubview(strengthsHeaderLabel)
-        contentStack.addArrangedSubview(strengthsLabel)
-        contentStack.addArrangedSubview(improvementsHeaderLabel)
-        contentStack.addArrangedSubview(improvementsLabel)
+        contentStack.addArrangedSubview(sessionIdLabel)
+        contentStack.addArrangedSubview(transcriptHeaderLabel)
+        contentStack.addArrangedSubview(transcriptLabel)
+        contentStack.addArrangedSubview(feedbackHeaderLabel)
+        contentStack.addArrangedSubview(feedbackLabel)
         contentStack.addArrangedSubview(errorLabel)
         contentStack.addArrangedSubview(retryButton)
         contentStack.addArrangedSubview(activityIndicator)
@@ -118,8 +115,14 @@ final class SessionDetailViewController: UIViewController {
         state = .loading
         fetchTask?.cancel()
         fetchTask = Task { [sessionId] in
+            guard let userId = AppState.shared.userId else {
+                await MainActor.run {
+                    self.state = .failed("Enter your user ID to view session details.")
+                }
+                return
+            }
             do {
-                let analysis = try await NetworkClient.shared.fetchAnalysis(userId: AppState.shared.userId, sessionId: sessionId)
+                let analysis = try await NetworkClient.shared.fetchAnalysis(userId: userId, sessionId: sessionId)
                 await MainActor.run {
                     self.state = .loaded(analysis)
                 }
@@ -146,12 +149,11 @@ final class SessionDetailViewController: UIViewController {
         activityIndicator.startAnimating()
         errorLabel.isHidden = true
         retryButton.isHidden = true
-        titleLabel.isHidden = true
-        summaryLabel.isHidden = true
-        strengthsHeaderLabel.isHidden = true
-        strengthsLabel.isHidden = true
-        improvementsHeaderLabel.isHidden = true
-        improvementsLabel.isHidden = true
+        sessionIdLabel.isHidden = true
+        transcriptHeaderLabel.isHidden = true
+        transcriptLabel.isHidden = true
+        feedbackHeaderLabel.isHidden = true
+        feedbackLabel.isHidden = true
     }
 
     private func showAnalysis(_ analysis: ConversationAnalysis) {
@@ -159,17 +161,16 @@ final class SessionDetailViewController: UIViewController {
         errorLabel.isHidden = true
         retryButton.isHidden = true
 
-        titleLabel.text = analysis.title
-        summaryLabel.text = analysis.summary
-        strengthsLabel.text = analysis.strengths.joined(separator: "\n• ").prependingBullet()
-        improvementsLabel.text = analysis.improvements.joined(separator: "\n• ").prependingBullet()
+        sessionIdLabel.text = "Session ID: \(analysis.sessionId)"
 
-        titleLabel.isHidden = false
-        summaryLabel.isHidden = false
-        strengthsHeaderLabel.isHidden = analysis.strengths.isEmpty
-        strengthsLabel.isHidden = analysis.strengths.isEmpty
-        improvementsHeaderLabel.isHidden = analysis.improvements.isEmpty
-        improvementsLabel.isHidden = analysis.improvements.isEmpty
+        transcriptLabel.text = analysis.transcript
+        feedbackLabel.text = analysis.feedback
+
+        sessionIdLabel.isHidden = false
+        transcriptHeaderLabel.isHidden = analysis.transcript.isEmpty
+        transcriptLabel.isHidden = analysis.transcript.isEmpty
+        feedbackHeaderLabel.isHidden = analysis.feedback.isEmpty
+        feedbackLabel.isHidden = analysis.feedback.isEmpty
     }
 
     private func showError(_ message: String) {
@@ -177,20 +178,11 @@ final class SessionDetailViewController: UIViewController {
         errorLabel.text = message
         errorLabel.isHidden = false
         retryButton.isHidden = false
-        titleLabel.isHidden = true
-        summaryLabel.isHidden = true
-        strengthsHeaderLabel.isHidden = true
-        strengthsLabel.isHidden = true
-        improvementsHeaderLabel.isHidden = true
-        improvementsLabel.isHidden = true
+        sessionIdLabel.isHidden = true
+        transcriptHeaderLabel.isHidden = true
+        transcriptLabel.isHidden = true
+        feedbackHeaderLabel.isHidden = true
+        feedbackLabel.isHidden = true
     }
 
-}
-
-private extension String {
-    func prependingBullet() -> String {
-        guard !isEmpty else { return "• (none)" }
-        if hasPrefix("•") { return self }
-        return "• " + self
-    }
 }

@@ -13,10 +13,18 @@ final class AppState {
     private let userIdKey = "user_id"
     private let conversationCacheKey = "latest_conversations"
 
-    private(set) var userId: String {
+    private(set) var userId: String? {
         didSet {
-            defaults.set(userId, forKey: userIdKey)
+            if let userId {
+                defaults.set(userId, forKey: userIdKey)
+            } else {
+                defaults.removeObject(forKey: userIdKey)
+            }
         }
+    }
+
+    var hasUserId: Bool {
+        userId?.isEmpty == false
     }
 
     var latestConversations: [ConversationPreview] = [] {
@@ -43,18 +51,18 @@ final class AppState {
 
     private init(defaults: UserDefaults = .standard) {
         self.defaults = defaults
-        if let storedId = defaults.string(forKey: userIdKey) {
-            userId = storedId
-        } else {
-            let newId = UUID().uuidString
-            userId = newId
-            defaults.set(newId, forKey: userIdKey)
-        }
+        userId = defaults.string(forKey: userIdKey)
         loadCachedConversations()
     }
 
     func setUserId(_ newUserId: String) {
-        userId = newUserId
+        let trimmed = newUserId.trimmingCharacters(in: .whitespacesAndNewlines)
+        let nextValue = trimmed.isEmpty ? nil : trimmed
+        guard userId != nextValue else { return }
+        userId = nextValue
+        latestConversations = []
+        lastFetchedAt = nil
+        errorMessage = nil
     }
 
     func updateConversations(_ conversations: [ConversationPreview], fetchedAt: Date = Date()) {

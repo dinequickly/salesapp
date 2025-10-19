@@ -201,6 +201,12 @@ final class HomeViewController: UIViewController {
             return
         }
 
+        guard let userId = appState.userId else {
+            statusLabel.text = "Enter your user ID to load conversations."
+            statusLabel.isHidden = false
+            return
+        }
+
         let needsFetch: Bool
         if force {
             needsFetch = true
@@ -217,7 +223,7 @@ final class HomeViewController: UIViewController {
         fetchTask = Task { [weak self] in
             guard let self else { return }
             do {
-                let previews = try await NetworkClient.shared.fetchConversations(userId: self.appState.userId)
+                let previews = try await NetworkClient.shared.fetchConversations(userId: userId)
                 await MainActor.run {
                     self.appState.updateConversations(previews)
                     self.appState.errorMessage = nil
