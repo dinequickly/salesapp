@@ -18,11 +18,16 @@ final class MainTabBarController: UITabBarController {
                                            image: UIImage(systemName: "video"),
                                            selectedImage: UIImage(systemName: "video.fill"))
 
+        let audioPractice = UINavigationController(rootViewController: PracticeAudioViewController())
+        audioPractice.tabBarItem = UITabBarItem(title: "Audio",
+                                                image: UIImage(systemName: "mic"),
+                                                selectedImage: UIImage(systemName: "mic.fill"))
+
         let review = UINavigationController(rootViewController: ReviewViewController())
         review.tabBarItem = UITabBarItem(title: "Review",
                                          image: UIImage(systemName: "list.bullet"),
                                          selectedImage: UIImage(systemName: "list.bullet"))
 
-        viewControllers = [home, practice, review]
+        viewControllers = [home, practice, audioPractice, review]
     }
 }

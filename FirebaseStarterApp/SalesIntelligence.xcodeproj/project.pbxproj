@@ -20,11 +20,12 @@
 		A1E7F2E225A7AF9500F0A015 /* ConversationAnalysis.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E7F2D225A7AF9500F0A012 /* ConversationAnalysis.swift */; };
 		A1E7F2E325A7AF9500F0A018 /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E7F2D425A7AF9500F0A017 /* NetworkClient.swift */; };
 		A1E7F2F325A7AF9500F0A01B /* SessionDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E7F2F225A7AF9500F0A01A /* SessionDetailViewController.swift */; };
-		A1E7F30425A7AF9500F0A01D /* NetworkErrorDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E7F30325A7AF9500F0A01C /* NetworkErrorDisplay.swift */; };
-		A1E7F30625A7AF9500F0A01F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E7F30525A7AF9500F0A01E /* Constants.swift */; };
-		A1E7F30925A7AF9500F0A022 /* RecordAndCallManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E7F30725A7AF9500F0A020 /* RecordAndCallManager.swift */; };
-		A1E7F30A25A7AF9500F0A023 /* ElevenLabsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E7F30825A7AF9500F0A021 /* ElevenLabsService.swift */; };
-		A1E7F30D25A7AF9500F0A026 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E7F30C25A7AF9500F0A025 /* NetworkMonitor.swift */; };
+	A1E7F30425A7AF9500F0A01D /* NetworkErrorDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E7F30325A7AF9500F0A01C /* NetworkErrorDisplay.swift */; };
+	A1E7F30625A7AF9500F0A01F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E7F30525A7AF9500F0A01E /* Constants.swift */; };
+	A1E7F30925A7AF9500F0A022 /* RecordAndCallManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E7F30725A7AF9500F0A020 /* RecordAndCallManager.swift */; };
+	A1E7F30A25A7AF9500F0A023 /* ElevenLabsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E7F30825A7AF9500F0A021 /* ElevenLabsService.swift */; };
+	A1E7F30D25A7AF9500F0A026 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E7F30C25A7AF9500F0A025 /* NetworkMonitor.swift */; };
+	A1E7F50C25A7CF8E00F0A040 /* PracticeAudioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E7F50B25A7CF8E00F0A040 /* PracticeAudioViewController.swift */; };
 		A1E7F40B25A7B93A00F0A030 /* UserIdEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E7F40A25A7B93A00F0A030 /* UserIdEntryViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -43,9 +44,10 @@
 		A1E7F2F225A7AF9500F0A01A /* SessionDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SessionDetailViewController.swift; path = SessionDetailViewController.swift; sourceTree = "<group>"; };
 		A1E7F30325A7AF9500F0A01C /* NetworkErrorDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "NetworkErrorDisplay.swift"; path = NetworkErrorDisplay.swift; sourceTree = "<group>"; };
 		A1E7F30525A7AF9500F0A01E /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = Constants.swift; sourceTree = "<group>"; };
-		A1E7F30725A7AF9500F0A020 /* RecordAndCallManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RecordAndCallManager.swift; path = RecordAndCallManager.swift; sourceTree = "<group>"; };
-		A1E7F30825A7AF9500F0A021 /* ElevenLabsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ElevenLabsService.swift; path = ElevenLabsService.swift; sourceTree = "<group>"; };
-		A1E7F30C25A7AF9500F0A025 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NetworkMonitor.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
+	A1E7F30725A7AF9500F0A020 /* RecordAndCallManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RecordAndCallManager.swift; path = RecordAndCallManager.swift; sourceTree = "<group>"; };
+	A1E7F30825A7AF9500F0A021 /* ElevenLabsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ElevenLabsService.swift; path = ElevenLabsService.swift; sourceTree = "<group>"; };
+	A1E7F30C25A7AF9500F0A025 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NetworkMonitor.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
+	A1E7F50B25A7CF8E00F0A040 /* PracticeAudioViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PracticeAudioViewController.swift; path = PracticeAudioViewController.swift; sourceTree = "<group>"; };
 		A1E7F40A25A7B93A00F0A030 /* UserIdEntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserIdEntryViewController.swift; path = UserIdEntryViewController.swift; sourceTree = "<group>"; };
 		1773BFD0221FA51F005C82D8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1773BFD3221FA51F005C82D8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -157,14 +159,15 @@
 			path = Home;
 			sourceTree = "<group>";
 		};
-		A1E7F2A825A7AF9500F0A004 /* Practice */ = {
-			isa = PBXGroup;
-			children = (
-				A1E7F2B325A7AF9500F0A009 /* PracticeViewController.swift */,
-			);
-			path = Practice;
-			sourceTree = "<group>";
-		};
+	A1E7F2A825A7AF9500F0A004 /* Practice */ = {
+		isa = PBXGroup;
+		children = (
+			A1E7F2B325A7AF9500F0A009 /* PracticeViewController.swift */,
+			A1E7F50B25A7CF8E00F0A040 /* PracticeAudioViewController.swift */,
+		);
+		path = Practice;
+		sourceTree = "<group>";
+	};
 		A1E7F40925A7B93A00F0A030 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
@@ -273,12 +276,13 @@
 				A1E7F2E125A7AF9500F0A014 /* ConversationPreview.swift in Sources */,
 				A1E7F2E225A7AF9500F0A015 /* ConversationAnalysis.swift in Sources */,
 				A1E7F2E325A7AF9500F0A018 /* NetworkClient.swift in Sources */,
-				A1E7F30925A7AF9500F0A022 /* RecordAndCallManager.swift in Sources */,
-				A1E7F30A25A7AF9500F0A023 /* ElevenLabsService.swift in Sources */,
-				A1E7F30D25A7AF9500F0A026 /* NetworkMonitor.swift in Sources */,
-				A1E7F40B25A7B93A00F0A030 /* UserIdEntryViewController.swift in Sources */,
-				A1E7F30625A7AF9500F0A01F /* Constants.swift in Sources */,
-				A1E7F30425A7AF9500F0A01D /* NetworkErrorDisplay.swift in Sources */,
+			A1E7F30925A7AF9500F0A022 /* RecordAndCallManager.swift in Sources */,
+			A1E7F30A25A7AF9500F0A023 /* ElevenLabsService.swift in Sources */,
+			A1E7F30D25A7AF9500F0A026 /* NetworkMonitor.swift in Sources */,
+			A1E7F40B25A7B93A00F0A030 /* UserIdEntryViewController.swift in Sources */,
+			A1E7F50C25A7CF8E00F0A040 /* PracticeAudioViewController.swift in Sources */,
+			A1E7F30625A7AF9500F0A01F /* Constants.swift in Sources */,
+			A1E7F30425A7AF9500F0A01D /* NetworkErrorDisplay.swift in Sources */,
 				A1E7F2C225A7AF9500F0A00D /* HomeViewController.swift in Sources */,
 				A1E7F2F325A7AF9500F0A01B /* SessionDetailViewController.swift in Sources */,
 				A1E7F2C325A7AF9500F0A00E /* PracticeViewController.swift in Sources */,
