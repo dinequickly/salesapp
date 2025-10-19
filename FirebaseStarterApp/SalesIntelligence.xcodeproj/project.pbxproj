@@ -3,13 +3,14 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		1773BFCA221FA51C005C82D8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1773BFC9221FA51C005C82D8 /* AppDelegate.swift */; };
 		1773BFD1221FA51F005C82D8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1773BFD0221FA51F005C82D8 /* Assets.xcassets */; };
 		1773BFD4221FA51F005C82D8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1773BFD2221FA51F005C82D8 /* LaunchScreen.storyboard */; };
+		2D88F7F9B8324B3ABAD7ADF9 /* ConversationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 994FC452F1EB45979BBDC3AE /* ConversationManager.swift */; };
 		A1E7F2C025A7AF9500F0A00B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E7F2B025A7AF9500F0A006 /* SceneDelegate.swift */; };
 		A1E7F2C125A7AF9500F0A00C /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E7F2B125A7AF9500F0A007 /* MainTabBarController.swift */; };
 		A1E7F2C225A7AF9500F0A00D /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E7F2B225A7AF9500F0A008 /* HomeViewController.swift */; };
@@ -20,39 +21,41 @@
 		A1E7F2E225A7AF9500F0A015 /* ConversationAnalysis.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E7F2D225A7AF9500F0A012 /* ConversationAnalysis.swift */; };
 		A1E7F2E325A7AF9500F0A018 /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E7F2D425A7AF9500F0A017 /* NetworkClient.swift */; };
 		A1E7F2F325A7AF9500F0A01B /* SessionDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E7F2F225A7AF9500F0A01A /* SessionDetailViewController.swift */; };
-	A1E7F30425A7AF9500F0A01D /* NetworkErrorDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E7F30325A7AF9500F0A01C /* NetworkErrorDisplay.swift */; };
-	A1E7F30625A7AF9500F0A01F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E7F30525A7AF9500F0A01E /* Constants.swift */; };
-	A1E7F30925A7AF9500F0A022 /* RecordAndCallManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E7F30725A7AF9500F0A020 /* RecordAndCallManager.swift */; };
-	A1E7F30A25A7AF9500F0A023 /* ElevenLabsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E7F30825A7AF9500F0A021 /* ElevenLabsService.swift */; };
-	A1E7F30D25A7AF9500F0A026 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E7F30C25A7AF9500F0A025 /* NetworkMonitor.swift */; };
-	A1E7F50C25A7CF8E00F0A040 /* PracticeAudioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E7F50B25A7CF8E00F0A040 /* PracticeAudioViewController.swift */; };
+		A1E7F30425A7AF9500F0A01D /* NetworkErrorDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E7F30325A7AF9500F0A01C /* NetworkErrorDisplay.swift */; };
+		A1E7F30625A7AF9500F0A01F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E7F30525A7AF9500F0A01E /* Constants.swift */; };
+		A1E7F30925A7AF9500F0A022 /* RecordAndCallManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E7F30725A7AF9500F0A020 /* RecordAndCallManager.swift */; };
+		A1E7F30A25A7AF9500F0A023 /* ElevenLabsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E7F30825A7AF9500F0A021 /* ElevenLabsService.swift */; };
+		A1E7F30D25A7AF9500F0A026 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E7F30C25A7AF9500F0A025 /* NetworkMonitor.swift */; };
 		A1E7F40B25A7B93A00F0A030 /* UserIdEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E7F40A25A7B93A00F0A030 /* UserIdEntryViewController.swift */; };
+		A1E7F50C25A7CF8E00F0A040 /* PracticeAudioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E7F50B25A7CF8E00F0A040 /* PracticeAudioViewController.swift */; };
+		E3C2A1B60F5D4E3A8B7C6D50 /* ElevenLabs in Frameworks */ = {isa = PBXBuildFile; productRef = E3C2A1B50F5D4E3A8B7C6D50 /* ElevenLabs */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		1773BFC6221FA51C005C82D8 /* SalesIntelligence.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SalesIntelligence.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		1773BFC9221FA51C005C82D8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		A1E7F2B025A7AF9500F0A006 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SceneDelegate.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		A1E7F2B125A7AF9500F0A007 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MainTabBarController.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
-		A1E7F2B225A7AF9500F0A008 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HomeViewController.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		A1E7F2B325A7AF9500F0A009 /* PracticeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PracticeViewController.swift; path = PracticeViewController.swift; sourceTree = "<group>"; };
-		A1E7F2B425A7AF9500F0A00A /* ReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ReviewViewController.swift; path = ReviewViewController.swift; sourceTree = "<group>"; };
-		A1E7F2D025A7AF9500F0A010 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppState.swift; path = AppState.swift; sourceTree = "<group>"; };
-		A1E7F2D125A7AF9500F0A011 /* ConversationPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ConversationPreview.swift; path = ConversationPreview.swift; sourceTree = "<group>"; };
-		A1E7F2D225A7AF9500F0A012 /* ConversationAnalysis.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ConversationAnalysis.swift; path = ConversationAnalysis.swift; sourceTree = "<group>"; };
-		A1E7F2D425A7AF9500F0A017 /* NetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NetworkClient.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
-		A1E7F2F225A7AF9500F0A01A /* SessionDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SessionDetailViewController.swift; path = SessionDetailViewController.swift; sourceTree = "<group>"; };
-		A1E7F30325A7AF9500F0A01C /* NetworkErrorDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "NetworkErrorDisplay.swift"; path = NetworkErrorDisplay.swift; sourceTree = "<group>"; };
-		A1E7F30525A7AF9500F0A01E /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = Constants.swift; sourceTree = "<group>"; };
-	A1E7F30725A7AF9500F0A020 /* RecordAndCallManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RecordAndCallManager.swift; path = RecordAndCallManager.swift; sourceTree = "<group>"; };
-	A1E7F30825A7AF9500F0A021 /* ElevenLabsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ElevenLabsService.swift; path = ElevenLabsService.swift; sourceTree = "<group>"; };
-	A1E7F30C25A7AF9500F0A025 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NetworkMonitor.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
-	A1E7F50B25A7CF8E00F0A040 /* PracticeAudioViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PracticeAudioViewController.swift; path = PracticeAudioViewController.swift; sourceTree = "<group>"; };
-		A1E7F40A25A7B93A00F0A030 /* UserIdEntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserIdEntryViewController.swift; path = UserIdEntryViewController.swift; sourceTree = "<group>"; };
+		1773BFC9221FA51C005C82D8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1773BFD0221FA51F005C82D8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1773BFD3221FA51F005C82D8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1773BFD5221FA51F005C82D8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		30FC2861236C7A5300DF476E /* SalesIntelligence.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SalesIntelligence.entitlements; sourceTree = "<group>"; };
+		994FC452F1EB45979BBDC3AE /* ConversationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationManager.swift; sourceTree = "<group>"; };
+		A1E7F2B025A7AF9500F0A006 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		A1E7F2B125A7AF9500F0A007 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		A1E7F2B225A7AF9500F0A008 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		A1E7F2B325A7AF9500F0A009 /* PracticeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeViewController.swift; sourceTree = "<group>"; };
+		A1E7F2B425A7AF9500F0A00A /* ReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewViewController.swift; sourceTree = "<group>"; };
+		A1E7F2D025A7AF9500F0A010 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		A1E7F2D125A7AF9500F0A011 /* ConversationPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationPreview.swift; sourceTree = "<group>"; };
+		A1E7F2D225A7AF9500F0A012 /* ConversationAnalysis.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationAnalysis.swift; sourceTree = "<group>"; };
+		A1E7F2D425A7AF9500F0A017 /* NetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
+		A1E7F2F225A7AF9500F0A01A /* SessionDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionDetailViewController.swift; sourceTree = "<group>"; };
+		A1E7F30325A7AF9500F0A01C /* NetworkErrorDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkErrorDisplay.swift; sourceTree = "<group>"; };
+		A1E7F30525A7AF9500F0A01E /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		A1E7F30725A7AF9500F0A020 /* RecordAndCallManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordAndCallManager.swift; sourceTree = "<group>"; };
+		A1E7F30825A7AF9500F0A021 /* ElevenLabsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElevenLabsService.swift; sourceTree = "<group>"; };
+		A1E7F30C25A7AF9500F0A025 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
+		A1E7F40A25A7B93A00F0A030 /* UserIdEntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserIdEntryViewController.swift; sourceTree = "<group>"; };
+		A1E7F50B25A7CF8E00F0A040 /* PracticeAudioViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeAudioViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +63,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E3C2A1B60F5D4E3A8B7C6D50 /* ElevenLabs in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -97,17 +101,11 @@
 			path = SalesIntelligence;
 			sourceTree = "<group>";
 		};
-		A1E7F2CF25A7AF9500F0A00F /* Core */ = {
+		749E3BE59A7001F21DFB8A77 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				A1E7F30525A7AF9500F0A01E /* Constants.swift */,
-				A1E7F2D025A7AF9500F0A010 /* AppState.swift */,
-				A1E7F2D425A7AF9500F0A017 /* NetworkClient.swift */,
-				A1E7F30325A7AF9500F0A01C /* NetworkErrorDisplay.swift */,
-				A1E7F30B25A7AF9500F0A024 /* Services */,
-				A1E7F2D325A7AF9500F0A016 /* Models */,
 			);
-			path = Core;
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		A1E7F2A525A7AF9500F0A001 /* Application */ = {
@@ -118,25 +116,6 @@
 				A1E7F2B125A7AF9500F0A007 /* MainTabBarController.swift */,
 			);
 			path = Application;
-			sourceTree = "<group>";
-		};
-		A1E7F2D325A7AF9500F0A016 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				A1E7F2D125A7AF9500F0A011 /* ConversationPreview.swift */,
-				A1E7F2D225A7AF9500F0A012 /* ConversationAnalysis.swift */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		A1E7F30B25A7AF9500F0A024 /* Services */ = {
-			isa = PBXGroup;
-			children = (
-				A1E7F30725A7AF9500F0A020 /* RecordAndCallManager.swift */,
-				A1E7F30825A7AF9500F0A021 /* ElevenLabsService.swift */,
-				A1E7F30C25A7AF9500F0A025 /* NetworkMonitor.swift */,
-			);
-			path = Services;
 			sourceTree = "<group>";
 		};
 		A1E7F2A625A7AF9500F0A002 /* Features */ = {
@@ -159,21 +138,13 @@
 			path = Home;
 			sourceTree = "<group>";
 		};
-	A1E7F2A825A7AF9500F0A004 /* Practice */ = {
-		isa = PBXGroup;
-		children = (
-			A1E7F2B325A7AF9500F0A009 /* PracticeViewController.swift */,
-			A1E7F50B25A7CF8E00F0A040 /* PracticeAudioViewController.swift */,
-		);
-		path = Practice;
-		sourceTree = "<group>";
-	};
-		A1E7F40925A7B93A00F0A030 /* Onboarding */ = {
+		A1E7F2A825A7AF9500F0A004 /* Practice */ = {
 			isa = PBXGroup;
 			children = (
-				A1E7F40A25A7B93A00F0A030 /* UserIdEntryViewController.swift */,
+				A1E7F2B325A7AF9500F0A009 /* PracticeViewController.swift */,
+				A1E7F50B25A7CF8E00F0A040 /* PracticeAudioViewController.swift */,
 			);
-			path = Onboarding;
+			path = Practice;
 			sourceTree = "<group>";
 		};
 		A1E7F2A925A7AF9500F0A005 /* Review */ = {
@@ -184,6 +155,28 @@
 			path = Review;
 			sourceTree = "<group>";
 		};
+		A1E7F2CF25A7AF9500F0A00F /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				A1E7F30525A7AF9500F0A01E /* Constants.swift */,
+				A1E7F2D025A7AF9500F0A010 /* AppState.swift */,
+				A1E7F2D425A7AF9500F0A017 /* NetworkClient.swift */,
+				A1E7F30325A7AF9500F0A01C /* NetworkErrorDisplay.swift */,
+				A1E7F30B25A7AF9500F0A024 /* Services */,
+				A1E7F2D325A7AF9500F0A016 /* Models */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		A1E7F2D325A7AF9500F0A016 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A1E7F2D125A7AF9500F0A011 /* ConversationPreview.swift */,
+				A1E7F2D225A7AF9500F0A012 /* ConversationAnalysis.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		A1E7F2F125A7AF9500F0A019 /* SessionDetail */ = {
 			isa = PBXGroup;
 			children = (
@@ -192,11 +185,23 @@
 			path = SessionDetail;
 			sourceTree = "<group>";
 		};
-		749E3BE59A7001F21DFB8A77 /* Frameworks */ = {
+		A1E7F30B25A7AF9500F0A024 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				A1E7F30725A7AF9500F0A020 /* RecordAndCallManager.swift */,
+				A1E7F30825A7AF9500F0A021 /* ElevenLabsService.swift */,
+				994FC452F1EB45979BBDC3AE /* ConversationManager.swift */,
+				A1E7F30C25A7AF9500F0A025 /* NetworkMonitor.swift */,
 			);
-			name = Frameworks;
+			path = Services;
+			sourceTree = "<group>";
+		};
+		A1E7F40925A7B93A00F0A030 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				A1E7F40A25A7B93A00F0A030 /* UserIdEntryViewController.swift */,
+			);
+			path = Onboarding;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -215,6 +220,9 @@
 			dependencies = (
 			);
 			name = SalesIntelligence;
+			packageProductDependencies = (
+				E3C2A1B50F5D4E3A8B7C6D50 /* ElevenLabs */,
+			);
 			productName = SalesIntelligence;
 			productReference = 1773BFC6221FA51C005C82D8 /* SalesIntelligence.app */;
 			productType = "com.apple.product-type.application";
@@ -243,6 +251,9 @@
 				Base,
 			);
 			mainGroup = 1773BFBD221FA51C005C82D8;
+			packageReferences = (
+				E3C2A1B40F5D4E3A8B7C6D50 /* XCRemoteSwiftPackageReference "elevenlabs-swift-sdk" */,
+			);
 			productRefGroup = 1773BFC7221FA51C005C82D8 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -276,13 +287,14 @@
 				A1E7F2E125A7AF9500F0A014 /* ConversationPreview.swift in Sources */,
 				A1E7F2E225A7AF9500F0A015 /* ConversationAnalysis.swift in Sources */,
 				A1E7F2E325A7AF9500F0A018 /* NetworkClient.swift in Sources */,
-			A1E7F30925A7AF9500F0A022 /* RecordAndCallManager.swift in Sources */,
-			A1E7F30A25A7AF9500F0A023 /* ElevenLabsService.swift in Sources */,
-			A1E7F30D25A7AF9500F0A026 /* NetworkMonitor.swift in Sources */,
-			A1E7F40B25A7B93A00F0A030 /* UserIdEntryViewController.swift in Sources */,
-			A1E7F50C25A7CF8E00F0A040 /* PracticeAudioViewController.swift in Sources */,
-			A1E7F30625A7AF9500F0A01F /* Constants.swift in Sources */,
-			A1E7F30425A7AF9500F0A01D /* NetworkErrorDisplay.swift in Sources */,
+				A1E7F30925A7AF9500F0A022 /* RecordAndCallManager.swift in Sources */,
+				A1E7F30A25A7AF9500F0A023 /* ElevenLabsService.swift in Sources */,
+				2D88F7F9B8324B3ABAD7ADF9 /* ConversationManager.swift in Sources */,
+				A1E7F30D25A7AF9500F0A026 /* NetworkMonitor.swift in Sources */,
+				A1E7F40B25A7B93A00F0A030 /* UserIdEntryViewController.swift in Sources */,
+				A1E7F50C25A7CF8E00F0A040 /* PracticeAudioViewController.swift in Sources */,
+				A1E7F30625A7AF9500F0A01F /* Constants.swift in Sources */,
+				A1E7F30425A7AF9500F0A01D /* NetworkErrorDisplay.swift in Sources */,
 				A1E7F2C225A7AF9500F0A00D /* HomeViewController.swift in Sources */,
 				A1E7F2F325A7AF9500F0A01B /* SessionDetailViewController.swift in Sources */,
 				A1E7F2C325A7AF9500F0A00E /* PracticeViewController.swift in Sources */,
@@ -355,7 +367,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -410,7 +422,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -425,15 +437,18 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = SalesIntelligence/SalesIntelligence.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 55SQ3S8VSZ;
 				INFOPLIST_FILE = SalesIntelligence/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Konvo;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.salesintelligence.app;
+				PRODUCT_BUNDLE_IDENTIFIER = com.maxwellmoroz.salesintelligence;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.9;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -444,15 +459,18 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = SalesIntelligence/SalesIntelligence.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = JSQ6T9Y6J4;
+				DEVELOPMENT_TEAM = 55SQ3S8VSZ;
 				INFOPLIST_FILE = SalesIntelligence/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Konvo;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.salesintelligence.app;
+				PRODUCT_BUNDLE_IDENTIFIER = com.maxwellmoroz.salesintelligence;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.9;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -480,6 +498,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		E3C2A1B40F5D4E3A8B7C6D50 /* XCRemoteSwiftPackageReference "elevenlabs-swift-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/elevenlabs/elevenlabs-swift-sdk.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		E3C2A1B50F5D4E3A8B7C6D50 /* ElevenLabs */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E3C2A1B40F5D4E3A8B7C6D50 /* XCRemoteSwiftPackageReference "elevenlabs-swift-sdk" */;
+			productName = ElevenLabs;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 1773BFBE221FA51C005C82D8 /* Project object */;
 }

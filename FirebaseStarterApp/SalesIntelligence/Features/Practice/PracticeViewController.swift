@@ -29,9 +29,8 @@ final class PracticeViewController: UIViewController {
     private let previewView = UIView()
     private let timerLabel = UILabel()
     private let statusLabel = UILabel()
-    private let buttonStack = UIStackView()
-    private let startButton = UIButton(type: .system)
-    private let stopButton = UIButton(type: .system)
+    private let primaryButton = UIButton(type: .system)
+    private var currentUserId: String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,36 +77,20 @@ final class PracticeViewController: UIViewController {
         statusLabel.numberOfLines = 0
         statusLabel.text = statusMessage
 
-        buttonStack.axis = .horizontal
-        buttonStack.spacing = 16
-        buttonStack.distribution = .fillEqually
-
-        startButton.setTitle("Start Practice", for: .normal)
-        startButton.setTitleColor(.white, for: .normal)
-        startButton.titleLabel?.font = UIFont.preferredFont(forTextStyle: .headline)
-        startButton.backgroundColor = .systemGreen
-        startButton.layer.cornerRadius = 12
-        startButton.layer.masksToBounds = true
-        startButton.contentEdgeInsets = UIEdgeInsets(top: 14, left: 20, bottom: 14, right: 20)
-        startButton.addTarget(self, action: #selector(handleStartTapped), for: .touchUpInside)
-
-        stopButton.setTitle("End Session", for: .normal)
-        stopButton.setTitleColor(.systemRed, for: .normal)
-        stopButton.titleLabel?.font = UIFont.preferredFont(forTextStyle: .headline)
-        stopButton.backgroundColor = .clear
-        stopButton.layer.cornerRadius = 12
-        stopButton.layer.borderColor = UIColor.systemRed.cgColor
-        stopButton.layer.borderWidth = 1
-        stopButton.contentEdgeInsets = UIEdgeInsets(top: 14, left: 20, bottom: 14, right: 20)
-        stopButton.addTarget(self, action: #selector(handleStopTapped), for: .touchUpInside)
-
-        buttonStack.addArrangedSubview(startButton)
-        buttonStack.addArrangedSubview(stopButton)
+        primaryButton.setTitle("Start Practice", for: .normal)
+        primaryButton.setTitleColor(.white, for: .normal)
+        primaryButton.titleLabel?.font = UIFont.preferredFont(forTextStyle: .headline)
+        primaryButton.backgroundColor = .systemGreen
+        primaryButton.layer.cornerRadius = 12
+        primaryButton.layer.masksToBounds = true
+        primaryButton.contentEdgeInsets = UIEdgeInsets(top: 14, left: 20, bottom: 14, right: 20)
+        primaryButton.heightAnchor.constraint(equalToConstant: 48).isActive = true
+        primaryButton.addTarget(self, action: #selector(handlePrimaryButtonTapped), for: .touchUpInside)
 
         contentStack.addArrangedSubview(previewView)
         contentStack.addArrangedSubview(timerLabel)
         contentStack.addArrangedSubview(statusLabel)
-        contentStack.addArrangedSubview(buttonStack)
+        contentStack.addArrangedSubview(primaryButton)
 
         NSLayoutConstraint.activate([
             contentStack.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
@@ -116,8 +99,19 @@ final class PracticeViewController: UIViewController {
         ])
     }
 
-    @objc private func handleStartTapped() {
-        guard state == .idle else { return }
+    @objc private func handlePrimaryButtonTapped() {
+        switch state {
+        case .idle, .error:
+            startPracticeSession()
+        case .recording:
+            finishPracticeSession()
+        case .preparing, .uploading:
+            break
+        }
+    }
+
+    private func startPracticeSession() {
+        guard state == .idle || state == .error else { return }
         guard NetworkMonitor.shared.isConnected else {
             statusMessage = "Offline. Connect to the internet to start a practice session."
             state = .error
@@ -129,16 +123,25 @@ final class PracticeViewController: UIViewController {
             return
         }
 
+        currentUserId = userId
+
         sessionTask?.cancel()
         sessionTask = Task { [weak self] in
             guard let self else { return }
+            defer {
+                Task { @MainActor in
+                    self.sessionTask = nil
+                }
+            }
             await MainActor.run {
                 self.state = .preparing
                 self.statusMessage = "Preparing session…"
             }
             do {
+                try Task.checkCancellation()
                 try await self.recordManager.start(on: self.previewView)
-                try await ElevenLabsService.shared.startSession(agentID: Constants.agentID, userId: userId)
+                try Task.checkCancellation()
+                try await ElevenLabsService.shared.startSession(agentID: Constants.ElevenLabs.agentID, userId: userId)
                 await MainActor.run {
                     self.recordingStartDate = Date()
                     self.startTimer()
@@ -147,18 +150,22 @@ final class PracticeViewController: UIViewController {
                 }
             } catch {
                 await ElevenLabsService.shared.stopSession()
+                if error is CancellationError {
+                    return
+                }
                 await MainActor.run {
                     self.stopTimer()
                     self.state = .error
                     self.statusMessage = error.displayMessage
+                    self.currentUserId = nil
                 }
             }
         }
     }
 
-    @objc private func handleStopTapped() {
+    private func finishPracticeSession() {
         guard state == .recording else { return }
-        guard let userId = appState.userId else {
+        guard let userId = currentUserId ?? appState.userId else {
             statusMessage = "User ID missing. Restart the session after entering it."
             state = .error
             return
@@ -167,12 +174,20 @@ final class PracticeViewController: UIViewController {
         sessionTask?.cancel()
         sessionTask = Task { [weak self] in
             guard let self else { return }
+            defer {
+                Task { @MainActor in
+                    self.sessionTask = nil
+                }
+            }
             await MainActor.run {
                 self.state = .uploading
                 self.statusMessage = "Uploading session…"
             }
+            var recordedFileURL: URL?
             do {
+                try Task.checkCancellation()
                 let (fileURL, duration) = try await self.recordManager.stop()
+                recordedFileURL = fileURL
                 await ElevenLabsService.shared.stopSession()
                 await MainActor.run {
                     self.stopTimer()
@@ -192,10 +207,17 @@ final class PracticeViewController: UIViewController {
                 }
             } catch {
                 await ElevenLabsService.shared.stopSession()
+                if let recordedFileURL, FileManager.default.fileExists(atPath: recordedFileURL.path) {
+                    try? FileManager.default.removeItem(at: recordedFileURL)
+                }
+                if error is CancellationError {
+                    return
+                }
                 await MainActor.run {
                     self.stopTimer()
                     self.state = .error
                     self.statusMessage = error.displayMessage
+                    self.currentUserId = nil
                 }
             }
         }
@@ -204,28 +226,33 @@ final class PracticeViewController: UIViewController {
     private func updateUIForState() {
         switch state {
         case .idle:
-            startButton.isHidden = false
-            startButton.isEnabled = true
-            stopButton.isHidden = true
-            stopButton.isEnabled = false
+            applyPrimaryButtonStyle(title: "Start Practice",
+                                    enabled: true,
+                                    backgroundColor: .systemGreen)
         case .preparing:
-            startButton.isHidden = false
-            startButton.isEnabled = false
-            stopButton.isHidden = true
-            stopButton.isEnabled = false
+            applyPrimaryButtonStyle(title: "Preparing…",
+                                    enabled: false,
+                                    backgroundColor: .systemGray3)
         case .recording:
-            startButton.isHidden = true
-            stopButton.isHidden = false
-            stopButton.isEnabled = true
+            applyPrimaryButtonStyle(title: "End Session",
+                                    enabled: true,
+                                    backgroundColor: .systemRed)
         case .uploading:
-            startButton.isHidden = true
-            stopButton.isHidden = true
+            applyPrimaryButtonStyle(title: "Uploading…",
+                                    enabled: false,
+                                    backgroundColor: .systemGray3)
         case .error:
-            startButton.isHidden = false
-            startButton.isEnabled = true
-            stopButton.isHidden = true
-            stopButton.isEnabled = false
+            applyPrimaryButtonStyle(title: "Retry Practice",
+                                    enabled: true,
+                                    backgroundColor: .systemOrange)
         }
+    }
+
+    private func applyPrimaryButtonStyle(title: String, enabled: Bool, backgroundColor: UIColor) {
+        primaryButton.setTitle(title, for: .normal)
+        primaryButton.isEnabled = enabled
+        primaryButton.backgroundColor = backgroundColor
+        primaryButton.alpha = enabled ? 1.0 : 0.6
     }
 
     private func startTimer() {
@@ -258,19 +285,21 @@ final class PracticeViewController: UIViewController {
     private func resetSessionState() {
         recordingStartDate = nil
         timerLabel.text = "00:00"
+        currentUserId = nil
     }
 
     private func cancelOngoingSession() {
         sessionTask?.cancel()
         sessionTask = nil
-        if state == .recording {
+        if state == .recording || state == .preparing {
             Task { [weak self] in
                 guard let self else { return }
-                _ = try? await self.recordManager.stop()
+                await self.recordManager.cancelRecording()
                 await ElevenLabsService.shared.stopSession()
             }
         }
         stopTimer()
+        resetSessionState()
         statusMessage = "Session cancelled."
         state = .idle
     }

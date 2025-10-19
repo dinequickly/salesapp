@@ -83,9 +83,15 @@ final class NetworkClient {
                                           boundary: boundary)
         request.httpBody = body
 
+#if DEBUG
+        print("[NetworkClient] Uploading practice session video for user \(userId) to \(Constants.Endpoint.upload.absoluteString)")
+#endif
         let (data, response) = try await session.data(for: request)
         try validate(response: response, data: data)
 
+#if DEBUG
+        print("[NetworkClient] Upload succeeded (\(data.count) bytes).")
+#endif
         do {
             return try decoder.decode(ConversationPreview.self, from: data)
         } catch {
@@ -134,6 +140,9 @@ final class NetworkClient {
 
         guard (200..<300).contains(httpResponse.statusCode) else {
             let message = String(data: data, encoding: .utf8)
+#if DEBUG
+            print("[NetworkClient] Upload failed with status \(httpResponse.statusCode). Message: \(message ?? "<none>")")
+#endif
             throw NetworkError.serverError(statusCode: httpResponse.statusCode, message: message)
         }
     }

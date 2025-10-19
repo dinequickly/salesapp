@@ -6,6 +6,7 @@ final class RecordAndCallManager: NSObject {
         case permissionDenied
         case cannotConfigureSession
         case notRecording
+        case cameraUnavailable
     }
 
     private let captureSession = AVCaptureSession()
@@ -14,12 +15,14 @@ final class RecordAndCallManager: NSObject {
     private var recordingContinuation: CheckedContinuation<(URL, TimeInterval), Error>?
     private var recordingStartDate: Date?
     private var isConfigured = false
+    private var isCancellingRecording = false
 
     @MainActor
     func start(on previewView: UIView) async throws {
         try await ensurePermissions()
         try configureSessionIfNeeded()
         attachPreview(to: previewView)
+        isCancellingRecording = false
 
         if !captureSession.isRunning {
             captureSession.startRunning()
@@ -29,6 +32,9 @@ final class RecordAndCallManager: NSObject {
 
         recordingStartDate = Date()
         let outputURL = RecordAndCallManager.makeTemporaryURL()
+        if let connection = movieOutput.connection(with: .video), connection.isVideoOrientationSupported {
+            connection.videoOrientation = .portrait
+        }
         movieOutput.startRecording(to: outputURL, recordingDelegate: self)
     }
 
@@ -44,6 +50,20 @@ final class RecordAndCallManager: NSObject {
     @MainActor
     func updatePreviewLayout(in view: UIView) {
         previewLayer?.frame = view.bounds
+    }
+
+    @MainActor
+    func cancelRecording() async {
+        if movieOutput.isRecording {
+            recordingContinuation?.resume(throwing: CancellationError())
+            recordingContinuation = nil
+            isCancellingRecording = true
+            movieOutput.stopRecording()
+        } else if captureSession.isRunning {
+            captureSession.stopRunning()
+            try? AVAudioSession.sharedInstance().setActive(false, options: .notifyOthersOnDeactivation)
+        }
+        recordingStartDate = nil
     }
 
     private func attachPreview(to view: UIView) {
@@ -80,9 +100,8 @@ final class RecordAndCallManager: NSObject {
         captureSession.sessionPreset = .high
 
         do {
-            guard let videoDevice = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .front)
-                    ?? AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .back) else {
-                throw ManagerError.cannotConfigureSession
+            guard let videoDevice = RecordAndCallManager.findVideoDevice() else {
+                throw ManagerError.cameraUnavailable
             }
             let videoInput = try AVCaptureDeviceInput(device: videoDevice)
             guard captureSession.canAddInput(videoInput) else {
@@ -132,15 +151,50 @@ final class RecordAndCallManager: NSObject {
     }
 
     private static func requestMicrophoneAccess() async -> Bool {
-        let status = AVCaptureDevice.authorizationStatus(for: .audio)
-        switch status {
-        case .authorized:
+        let audioSession = AVAudioSession.sharedInstance()
+        switch audioSession.recordPermission {
+        case .granted:
             return true
-        case .notDetermined:
-            return await AVCaptureDevice.requestAccess(for: .audio)
-        default:
+        case .denied:
+            return false
+        case .undetermined:
+            return await withCheckedContinuation { continuation in
+                audioSession.requestRecordPermission { granted in
+                    continuation.resume(returning: granted)
+                }
+            }
+        @unknown default:
             return false
         }
+    }
+
+    private static func findVideoDevice() -> AVCaptureDevice? {
+        let preferredTypes: [AVCaptureDevice.DeviceType] = [
+            .builtInTrueDepthCamera,
+            .builtInWideAngleCamera,
+            .builtInDualWideCamera,
+            .builtInDualCamera,
+            .builtInTripleCamera,
+            .builtInUltraWideCamera
+        ]
+
+        // Prefer any front-facing camera first
+        let frontDiscovery = AVCaptureDevice.DiscoverySession(deviceTypes: preferredTypes,
+                                                              mediaType: .video,
+                                                              position: .front)
+        if let front = frontDiscovery.devices.first {
+            return front
+        }
+
+        // Fall back to any available camera (likely back-facing)
+        let anyDiscovery = AVCaptureDevice.DiscoverySession(deviceTypes: preferredTypes,
+                                                            mediaType: .video,
+                                                            position: .unspecified)
+        if let anyDevice = anyDiscovery.devices.first {
+            return anyDevice
+        }
+
+        return AVCaptureDevice.default(for: .video)
     }
 }
 
@@ -155,6 +209,12 @@ extension RecordAndCallManager: AVCaptureFileOutputRecordingDelegate {
         let duration = recordingStartDate.map { Date().timeIntervalSince($0) } ?? 0
         recordingStartDate = nil
 
+        if isCancellingRecording {
+            isCancellingRecording = false
+            try? FileManager.default.removeItem(at: outputFileURL)
+            return
+        }
+
         if let error {
             recordingContinuation?.resume(throwing: error)
         } else {
@@ -162,5 +222,20 @@ extension RecordAndCallManager: AVCaptureFileOutputRecordingDelegate {
         }
 
         recordingContinuation = nil
+    }
+}
+
+extension RecordAndCallManager.ManagerError: LocalizedError {
+    var errorDescription: String? {
+        switch self {
+        case .permissionDenied:
+            return "Camera or microphone permission is required to record practice sessions."
+        case .cannotConfigureSession:
+            return "Unable to configure capture session. Please restart the app and try again."
+        case .notRecording:
+            return "Recording is not active."
+        case .cameraUnavailable:
+            return "No camera is available. Please run on a device with a camera."
+        }
     }
 }

@@ -1,21 +1,36 @@
+import ElevenLabs
 import Foundation
 
-/// Placeholder integration point for ElevenLabs Conversational AI agent.
-/// Replace the simulated delays with real SDK calls when available.
+@MainActor
 final class ElevenLabsService {
     static let shared = ElevenLabsService()
+
+    private let conversationManager = ConversationManager()
 
     private init() {}
 
     func startSession(agentID: String, userId: String) async throws {
-        // TODO: Integrate ElevenLabs Swift SDK start call.
-        // Simulate minimal latency to keep UI responsive for now.
-        try Task.checkCancellation()
-        try await Task.sleep(nanoseconds: 200_000_000)
+        var config = ConversationConfig()
+        config.userId = userId
+        if Constants.ElevenLabs.textOnlyTesting {
+            config.conversationOverrides = ConversationOverrides(textOnly: true)
+        }
+
+        try await conversationManager.startConversation(authMode: authMode(agentID: agentID), config: config)
     }
 
     func stopSession() async {
-        // TODO: Integrate ElevenLabs Swift SDK stop call.
-        try? await Task.sleep(nanoseconds: 50_000_000)
+        await conversationManager.endConversation()
+        conversationManager.reset()
+    }
+
+    private func authMode(agentID: String) -> ConversationManager.AuthMode {
+        if Constants.ElevenLabs.useConversationToken {
+            return .conversationTokenProvider {
+                try await Constants.ElevenLabs.fetchConversationToken()
+            }
+        } else {
+            return .publicAgent(agentId: agentID)
+        }
     }
 }
