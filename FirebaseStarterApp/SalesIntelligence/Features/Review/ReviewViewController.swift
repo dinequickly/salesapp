@@ -122,7 +122,7 @@ final class ReviewViewController: UITableViewController {
         }
 
         guard let userId = appState.userId else {
-            statusLabel.text = "Enter your user ID to load conversations."
+            statusLabel.text = "Complete onboarding to load conversations."
             statusLabel.isHidden = false
             refreshControl?.endRefreshing()
             return

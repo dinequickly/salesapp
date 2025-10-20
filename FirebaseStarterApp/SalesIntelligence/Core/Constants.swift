@@ -29,4 +29,20 @@ enum Constants {
         static let analysis = URL(string: "https://maxipad.app.n8n.cloud/webhook/d65a27ed-9a6a-4fb8-afd6-3464cefbde61")!
         static let upload = URL(string: "https://maxipad.app.n8n.cloud/webhook/interview-upload")!
     }
+
+    enum Supabase {
+        static let urlString: String = {
+            if let value = ProcessInfo.processInfo.environment["SUPABASE_URL"], !value.isEmpty {
+                return value
+            }
+            return "https://oykwpckmnrxhuxjcqtex.supabase.co"
+        }()
+
+        static let anonKey: String = {
+            if let value = ProcessInfo.processInfo.environment["SUPABASE_ANON_KEY"], !value.isEmpty {
+                return value
+            }
+            return "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im95a3dwY2ttbnJ4aHV4amNxdGV4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjA5NTM4OTIsImV4cCI6MjA3NjUyOTg5Mn0.HlWDzNo1KT5aKgHSZ6f136qAMT5LfZ_1GYjS3AGsAQw"
+        }()
+    }
 }

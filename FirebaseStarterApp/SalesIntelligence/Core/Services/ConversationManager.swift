@@ -2,7 +2,7 @@ import Combine
 import ElevenLabs
 
 @MainActor
-final class ConversationManager {
+final class ConversationManager: ObservableObject {
     enum AuthMode {
         case publicAgent(agentId: String)
         case conversationTokenProvider(() async throws -> String)
@@ -11,6 +11,7 @@ final class ConversationManager {
     @Published private(set) var state: ConversationState = .idle
     @Published private(set) var messages: [Message] = []
     @Published private(set) var isMuted: Bool = true
+    @Published private(set) var metadata: ConversationMetadataEvent?
 
     var hasActiveConversation: Bool {
         state.isActive
@@ -23,6 +24,7 @@ final class ConversationManager {
         tearDownConversation()
         messages = []
         isMuted = true
+        metadata = nil
 
         let activeConversation: Conversation
         switch authMode {
@@ -62,6 +64,7 @@ final class ConversationManager {
         state = .idle
         messages = []
         isMuted = true
+        metadata = nil
     }
 
     private func bind(to conversation: Conversation) {
@@ -86,6 +89,12 @@ final class ConversationManager {
         conversation.$isMuted
             .sink { [weak self] isMuted in
                 self?.isMuted = isMuted
+            }
+            .store(in: &conversationCancellables)
+
+        conversation.$conversationMetadata
+            .sink { [weak self] metadata in
+                self?.metadata = metadata
             }
             .store(in: &conversationCancellables)
     }

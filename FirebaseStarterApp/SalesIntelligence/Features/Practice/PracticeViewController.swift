@@ -118,7 +118,7 @@ final class PracticeViewController: UIViewController {
             return
         }
         guard let userId = appState.userId else {
-            statusMessage = "Enter your user ID to begin practicing."
+            statusMessage = "Complete onboarding to begin practicing."
             state = .error
             return
         }
@@ -166,7 +166,7 @@ final class PracticeViewController: UIViewController {
     private func finishPracticeSession() {
         guard state == .recording else { return }
         guard let userId = currentUserId ?? appState.userId else {
-            statusMessage = "User ID missing. Restart the session after entering it."
+            statusMessage = "User profile missing. Restart the session after completing onboarding."
             state = .error
             return
         }
