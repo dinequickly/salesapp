@@ -117,7 +117,7 @@ final class SessionDetailViewController: UIViewController {
         fetchTask = Task { [sessionId] in
             guard let userId = AppState.shared.userId else {
                 await MainActor.run {
-                    self.state = .failed("Enter your user ID to view session details.")
+                    self.state = .failed("Complete onboarding to view session details.")
                 }
                 return
             }

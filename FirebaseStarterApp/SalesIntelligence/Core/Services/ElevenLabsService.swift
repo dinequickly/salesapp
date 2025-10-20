@@ -5,7 +5,7 @@ import Foundation
 final class ElevenLabsService {
     static let shared = ElevenLabsService()
 
-    private let conversationManager = ConversationManager()
+    let conversationManager = ConversationManager()
 
     private init() {}
 

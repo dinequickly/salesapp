@@ -11,6 +11,13 @@
 		1773BFD1221FA51F005C82D8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1773BFD0221FA51F005C82D8 /* Assets.xcassets */; };
 		1773BFD4221FA51F005C82D8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1773BFD2221FA51F005C82D8 /* LaunchScreen.storyboard */; };
 		2D88F7F9B8324B3ABAD7ADF9 /* ConversationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 994FC452F1EB45979BBDC3AE /* ConversationManager.swift */; };
+		B1FAAAF02F6E4D1A00B9F001 /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FAAAEC2F6E4D1A00B9F001 /* UserProfile.swift */; };
+		B1FAAAF12F6E4D1A00B9F002 /* VoiceTranscript.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FAAAED2F6E4D1A00B9F002 /* VoiceTranscript.swift */; };
+		B1FAAAF22F6E4D1A00B9F003 /* OnboardingStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FAAAEE2F6E4D1A00B9F003 /* OnboardingStep.swift */; };
+		B1FAAAF32F6E4D1A00B9F004 /* SupabaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FAAAEF2F6E4D1A00B9F004 /* SupabaseService.swift */; };
+		B1FABA032F6E4D1A00B9F010 /* Supabase in Frameworks */ = {isa = PBXBuildFile; productRef = B1FABA012F6E4D1A00B9F010 /* Supabase */; };
+		B1FACEA12F6E4D1A00B9F020 /* OnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FACEA02F6E4D1A00B9F020 /* OnboardingViewModel.swift */; };
+		B1FACEA32F6E4D1A00B9F021 /* OnboardingContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FACEA22F6E4D1A00B9F021 /* OnboardingContainerView.swift */; };
 		A1E7F2C025A7AF9500F0A00B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E7F2B025A7AF9500F0A006 /* SceneDelegate.swift */; };
 		A1E7F2C125A7AF9500F0A00C /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E7F2B125A7AF9500F0A007 /* MainTabBarController.swift */; };
 		A1E7F2C225A7AF9500F0A00D /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E7F2B225A7AF9500F0A008 /* HomeViewController.swift */; };
@@ -26,7 +33,6 @@
 		A1E7F30925A7AF9500F0A022 /* RecordAndCallManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E7F30725A7AF9500F0A020 /* RecordAndCallManager.swift */; };
 		A1E7F30A25A7AF9500F0A023 /* ElevenLabsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E7F30825A7AF9500F0A021 /* ElevenLabsService.swift */; };
 		A1E7F30D25A7AF9500F0A026 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E7F30C25A7AF9500F0A025 /* NetworkMonitor.swift */; };
-		A1E7F40B25A7B93A00F0A030 /* UserIdEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E7F40A25A7B93A00F0A030 /* UserIdEntryViewController.swift */; };
 		A1E7F50C25A7CF8E00F0A040 /* PracticeAudioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E7F50B25A7CF8E00F0A040 /* PracticeAudioViewController.swift */; };
 		E3C2A1B60F5D4E3A8B7C6D50 /* ElevenLabs in Frameworks */ = {isa = PBXBuildFile; productRef = E3C2A1B50F5D4E3A8B7C6D50 /* ElevenLabs */; };
 /* End PBXBuildFile section */
@@ -39,6 +45,10 @@
 		1773BFD5221FA51F005C82D8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		30FC2861236C7A5300DF476E /* SalesIntelligence.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SalesIntelligence.entitlements; sourceTree = "<group>"; };
 		994FC452F1EB45979BBDC3AE /* ConversationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationManager.swift; sourceTree = "<group>"; };
+		B1FAAAEC2F6E4D1A00B9F001 /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
+		B1FAAAED2F6E4D1A00B9F002 /* VoiceTranscript.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceTranscript.swift; sourceTree = "<group>"; };
+		B1FAAAEE2F6E4D1A00B9F003 /* OnboardingStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingStep.swift; sourceTree = "<group>"; };
+		B1FAAAEF2F6E4D1A00B9F004 /* SupabaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseService.swift; sourceTree = "<group>"; };
 		A1E7F2B025A7AF9500F0A006 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		A1E7F2B125A7AF9500F0A007 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		A1E7F2B225A7AF9500F0A008 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -54,8 +64,9 @@
 		A1E7F30725A7AF9500F0A020 /* RecordAndCallManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordAndCallManager.swift; sourceTree = "<group>"; };
 		A1E7F30825A7AF9500F0A021 /* ElevenLabsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElevenLabsService.swift; sourceTree = "<group>"; };
 		A1E7F30C25A7AF9500F0A025 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
-		A1E7F40A25A7B93A00F0A030 /* UserIdEntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserIdEntryViewController.swift; sourceTree = "<group>"; };
-		A1E7F50B25A7CF8E00F0A040 /* PracticeAudioViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeAudioViewController.swift; sourceTree = "<group>"; };
+	A1E7F50B25A7CF8E00F0A040 /* PracticeAudioViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeAudioViewController.swift; sourceTree = "<group>"; };
+	B1FACEA02F6E4D1A00B9F020 /* OnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewModel.swift; sourceTree = "<group>"; };
+	B1FACEA22F6E4D1A00B9F021 /* OnboardingContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingContainerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +75,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E3C2A1B60F5D4E3A8B7C6D50 /* ElevenLabs in Frameworks */,
+				B1FABA032F6E4D1A00B9F010 /* Supabase in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -173,6 +185,9 @@
 			children = (
 				A1E7F2D125A7AF9500F0A011 /* ConversationPreview.swift */,
 				A1E7F2D225A7AF9500F0A012 /* ConversationAnalysis.swift */,
+				B1FAAAEC2F6E4D1A00B9F001 /* UserProfile.swift */,
+				B1FAAAED2F6E4D1A00B9F002 /* VoiceTranscript.swift */,
+				B1FAAAEE2F6E4D1A00B9F003 /* OnboardingStep.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -192,15 +207,17 @@
 				A1E7F30825A7AF9500F0A021 /* ElevenLabsService.swift */,
 				994FC452F1EB45979BBDC3AE /* ConversationManager.swift */,
 				A1E7F30C25A7AF9500F0A025 /* NetworkMonitor.swift */,
+				B1FAAAEF2F6E4D1A00B9F004 /* SupabaseService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
 		};
-		A1E7F40925A7B93A00F0A030 /* Onboarding */ = {
-			isa = PBXGroup;
-			children = (
-				A1E7F40A25A7B93A00F0A030 /* UserIdEntryViewController.swift */,
-			);
+	A1E7F40925A7B93A00F0A030 /* Onboarding */ = {
+		isa = PBXGroup;
+		children = (
+			B1FACEA22F6E4D1A00B9F021 /* OnboardingContainerView.swift */,
+			B1FACEA02F6E4D1A00B9F020 /* OnboardingViewModel.swift */,
+		);
 			path = Onboarding;
 			sourceTree = "<group>";
 		};
@@ -219,10 +236,11 @@
 			);
 			dependencies = (
 			);
-			name = SalesIntelligence;
-			packageProductDependencies = (
-				E3C2A1B50F5D4E3A8B7C6D50 /* ElevenLabs */,
-			);
+		name = SalesIntelligence;
+		packageProductDependencies = (
+			E3C2A1B50F5D4E3A8B7C6D50 /* ElevenLabs */,
+			B1FABA012F6E4D1A00B9F010 /* Supabase */,
+		);
 			productName = SalesIntelligence;
 			productReference = 1773BFC6221FA51C005C82D8 /* SalesIntelligence.app */;
 			productType = "com.apple.product-type.application";
@@ -251,9 +269,10 @@
 				Base,
 			);
 			mainGroup = 1773BFBD221FA51C005C82D8;
-			packageReferences = (
-				E3C2A1B40F5D4E3A8B7C6D50 /* XCRemoteSwiftPackageReference "elevenlabs-swift-sdk" */,
-			);
+		packageReferences = (
+			E3C2A1B40F5D4E3A8B7C6D50 /* XCRemoteSwiftPackageReference "elevenlabs-swift-sdk" */,
+			B1FABA002F6E4D1A00B9F010 /* XCRemoteSwiftPackageReference "supabase-swift" */,
+		);
 			productRefGroup = 1773BFC7221FA51C005C82D8 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -286,13 +305,18 @@
 				A1E7F2E025A7AF9500F0A013 /* AppState.swift in Sources */,
 				A1E7F2E125A7AF9500F0A014 /* ConversationPreview.swift in Sources */,
 				A1E7F2E225A7AF9500F0A015 /* ConversationAnalysis.swift in Sources */,
+				B1FAAAF02F6E4D1A00B9F001 /* UserProfile.swift in Sources */,
+				B1FAAAF12F6E4D1A00B9F002 /* OnboardingSession.swift in Sources */,
+				B1FAAAF22F6E4D1A00B9F003 /* OnboardingStep.swift in Sources */,
 				A1E7F2E325A7AF9500F0A018 /* NetworkClient.swift in Sources */,
 				A1E7F30925A7AF9500F0A022 /* RecordAndCallManager.swift in Sources */,
 				A1E7F30A25A7AF9500F0A023 /* ElevenLabsService.swift in Sources */,
-				2D88F7F9B8324B3ABAD7ADF9 /* ConversationManager.swift in Sources */,
-				A1E7F30D25A7AF9500F0A026 /* NetworkMonitor.swift in Sources */,
-				A1E7F40B25A7B93A00F0A030 /* UserIdEntryViewController.swift in Sources */,
-				A1E7F50C25A7CF8E00F0A040 /* PracticeAudioViewController.swift in Sources */,
+				B1FAAAF32F6E4D1A00B9F004 /* SupabaseService.swift in Sources */,
+			2D88F7F9B8324B3ABAD7ADF9 /* ConversationManager.swift in Sources */,
+			A1E7F30D25A7AF9500F0A026 /* NetworkMonitor.swift in Sources */,
+			B1FACEA12F6E4D1A00B9F020 /* OnboardingViewModel.swift in Sources */,
+			B1FACEA32F6E4D1A00B9F021 /* OnboardingContainerView.swift in Sources */,
+			A1E7F50C25A7CF8E00F0A040 /* PracticeAudioViewController.swift in Sources */,
 				A1E7F30625A7AF9500F0A01F /* Constants.swift in Sources */,
 				A1E7F30425A7AF9500F0A01D /* NetworkErrorDisplay.swift in Sources */,
 				A1E7F2C225A7AF9500F0A00D /* HomeViewController.swift in Sources */,
@@ -508,6 +532,14 @@
 				minimumVersion = 2.0.0;
 			};
 		};
+		B1FABA002F6E4D1A00B9F010 /* XCRemoteSwiftPackageReference "supabase-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/supabase/supabase-swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -515,6 +547,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = E3C2A1B40F5D4E3A8B7C6D50 /* XCRemoteSwiftPackageReference "elevenlabs-swift-sdk" */;
 			productName = ElevenLabs;
+		};
+		B1FABA012F6E4D1A00B9F010 /* Supabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B1FABA002F6E4D1A00B9F010 /* XCRemoteSwiftPackageReference "supabase-swift" */;
+			productName = Supabase;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
